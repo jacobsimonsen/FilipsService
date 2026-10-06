@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Filips Service tilbyder lokal hjælp til snerydning, græsslåning og løvrydning i Gl. Kongsvang. Send en forespørgsel til Filip.">
+  <title>Filips Service · Gl. Kongsvang</title>
+  <style>
+:root{--g:#173f2c;--lg:#e8f1e9;--ink:#18231d;--mut:#68736d;--card:#fff;--line:#d9e1db}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:#f6f8f5}header{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(5vw,22px);position:sticky;top:0;z-index:3}.brand{font-weight:800;font-size:24px}.logo{width:112px;height:58px;display:block;object-fit:contain;border-radius:8px}.wrap{max-width:1050px;margin:auto;padding:42px 22px}.hero{text-align:center;padding:24px 0 38px}.hero h1{font-size:clamp(34px,6vw,62px);line-height:1;margin:0 0 15px}.hero p{color:var(--mut);font-size:18px}.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 8px 25px #173f2c0b}.icon{font-size:42px}.price{font-size:26px;font-weight:800;margin:12px 0}.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:750;cursor:pointer;background:var(--g);color:#fff}.btn.secondary{background:#fff;color:var(--g);border:1px solid var(--g)}.panel{display:none;margin-top:28px}.panel.active{display:block}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.option{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}label{font-weight:650}input,select{width:100%;padding:12px;border:1px solid #cbd4cd;border-radius:10px;font:inherit;margin-top:6px}.field{margin:13px 0}.total{font-size:30px;font-weight:850}.note{font-size:13px;color:var(--mut)}.success{background:var(--lg);padding:16px;border-radius:12px;margin-top:16px;display:none}.footer{text-align:center;color:var(--mut);padding:40px 20px;font-size:13px}
+@media(max-width:760px){.services,.grid{grid-template-columns:1fr}.wrap{padding-top:24px}.hero{padding-top:8px}.hero h1{font-size:40px}}
+
+    a{color:var(--g)}
+    .area{display:inline-block;background:var(--lg);color:var(--g);border-radius:999px;padding:8px 14px;font-weight:700;margin-bottom:18px}
+    input[type="checkbox"],input[type="radio"]{width:18px;height:18px;margin:0;accent-color:var(--g);flex-shrink:0}
+    .option label{display:flex;align-items:center;gap:10px;font-weight:600}
+    .option b{white-space:nowrap}
+    .driveway{border:0;margin:18px 0 0;padding:0;min-width:0}
+    .driveway legend{font-weight:700;padding:0;margin-bottom:4px}
+    textarea{width:100%;padding:12px;border:1px solid #cbd4cd;border-radius:10px;font:inherit;margin-top:6px;resize:vertical}
+    .btn:disabled{opacity:.6;cursor:wait}
+    .contact{margin-top:28px;text-align:center}
+    .contact a{overflow-wrap:anywhere}
+    .contact h2{margin-top:0}
+    .error{display:none;color:#8a2424;background:#fff0ed;border:1px solid #ebc4be;padding:12px;border-radius:10px;margin-top:16px}
+    .success p{margin:6px 0 0}
+    .honeypot{display:none}
+    :focus-visible{outline:3px solid #529b72;outline-offset:3px}
+    @media(max-width:420px){header{padding:0 16px}.brand{font-size:21px}.logo{width:90px}.card{padding:20px}}
+
+    .hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr);grid-template-areas:"copy logo";align-items:center;gap:38px;text-align:left;padding:10px 0 38px}
+    .hero-copy{grid-area:copy}
+    .hero-copy h1{font-size:clamp(36px,4.7vw,58px);line-height:1.05}
+    .hero-copy p{line-height:1.55}
+    .hero-copy .note{font-size:14px;line-height:1.65}
+    .hero-logo-card{grid-area:logo;background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 8px 25px #173f2c0b}
+    .hero-logo{display:block;width:100%;height:auto}
+    @media(max-width:760px){.hero{grid-template-columns:minmax(0,1fr);grid-template-areas:"logo" "copy";gap:24px;text-align:center;padding-top:0}.hero-logo-card{width:100%;max-width:360px;justify-self:center;padding:14px}.hero-copy h1{font-size:40px}}
+  </style>
+</head>
+<body>
+  <main id="public" class="wrap">
+    <section class="hero" aria-label="Filips Service i Gl. Kongsvang">
+      <div class="hero-copy">
+      <span class="area">Lokal hjælp i Gl. Kongsvang</span>
+      <h1>Hjælp lige rundt om hjørnet.</h1>
+      <p>Få hjælp til hus og have i Gl. Kongsvang. Enkelt og til faste priser.</p>
+      <p class="note">Send en forespørgsel – Filip kontakter dig for at aftale opgaven og tidspunktet.</p>
+
+      </div>
+      <div class="hero-logo-card">
+        <img class='hero-logo' src='./logo.png' alt="F.S. Filip's Service logo">
+      </div>
+    </section>
+    <div id="success" class="success" role="status" tabindex="-1">
+      <strong>Tak! Din forespørgsel er modtaget.</strong>
+      <p>Filip kontakter dig for at aftale opgaven og tidspunktet. Datoen er først aftalt, når Filip har bekræftet den.</p>
+    </div>
+    <section class="services" aria-label="Vælg en service">
+      <div class="card">
+        <div class="icon" aria-hidden="true">❄️</div><h2>Snerydning</h2>
+        <p>Fortov op til 15 meter.</p><div class="price">40 kr.</div>
+        <button class="btn" type="button" onclick="book('Snerydning')">Vælg snerydning</button>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">🌱</div><h2>Græsslåning</h2>
+        <p>Standard græsplæne.</p><div class="price">50 kr.</div>
+        <button class="btn" type="button" onclick="book('Græsslåning')">Vælg græsslåning</button>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">🍂</div><h2>Løvrydning</h2>
+        <p>Opsamling af blade. Bortkørsel kan tilvælges.</p><div class="price">40 kr.</div>
+        <button class="btn" type="button" onclick="book('Løvrydning')">Vælg løvrydning</button>
+      </div>
+    </section>
+    <section id="booking" class="panel card" aria-labelledby="serviceTitle">
+      <div class="grid">
+        <div>
+          <h2 id="serviceTitle">Send forespørgsel</h2>
+          <p class="note">Vælg eventuelle tillæg. Du sender en forespørgsel, som Filip bekræfter efterfølgende.</p>
+          <div id="snowExtras" hidden>
+            <div class="option"><label><input type="checkbox" class="extra" data-name="Saltning" data-price="15"> Saltning</label><b>+15 kr.</b></div>
+            <fieldset class="driveway">
+              <legend>Indkørsel</legend>
+              <div class="option"><label><input type="radio" name="driveway" value="0" data-name="" checked> Ingen indkørsel</label><b>+0 kr.</b></div>
+              <div class="option"><label><input type="radio" name="driveway" value="20" data-name="Lille indkørsel"> Lille indkørsel</label><b>+20 kr.</b></div>
+              <div class="option"><label><input type="radio" name="driveway" value="40" data-name="Stor indkørsel"> Stor indkørsel</label><b>+40 kr.</b></div>
+            </fieldset>
+            <div class="field"><label for="extraMeters">Ekstra fortov</label>
+              <select id="extraMeters">
+                <option value="0">Ingen</option><option value="10">+10 meter (+10 kr.)</option>
+                <option value="20">+20 meter (+20 kr.)</option><option value="30">+30 meter (+30 kr.)</option>
+              </select>
+            </div>
+          </div>
+          <div id="leafExtras" hidden>
+            <div class="option"><label><input id="leafTransport" type="checkbox" data-name="Bortkørsel af løv" data-price="10"> Bortkørsel af løv</label><b>+10 kr.</b></div>
+          </div>
+          <p>Pris i alt</p><div class="total" aria-live="polite"><span id="total">0</span> kr.</div>
+          <p class="note">Filip bekræfter opgavens omfang og pris sammen med dig.</p>
+        </div>
+        <form id="form" action="https://formsubmit.co/filipvsimonsen@gmail.com" method="POST" accept-charset="UTF-8" onsubmit="return submitInquiry(event)">
+          <input id="inquiryService" type="hidden" name="Service">
+          <input type="hidden" name="Område" value="Gl. Kongsvang">
+          <input id="inquiryExtras" type="hidden" name="Tillæg" value="Ingen">
+          <input id="inquiryPrice" type="hidden" name="Prisoverslag">
+          <input id="inquirySubject" type="hidden" name="_subject" value="Ny forespørgsel · Filips Service">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input id="inquiryNext" type="hidden" name="_next" disabled>
+          <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field"><label for="date">Ønsket dato</label><input id="date" name="Ønsket dato" type="date" required></div>
+          <div class="field"><label for="name">Navn</label><input id="name" name="Navn" required maxlength="120" autocomplete="name" placeholder="Dit navn"></div>
+          <div class="field"><label for="address">Adresse i Gl. Kongsvang</label><input id="address" name="Adresse" required maxlength="250" autocomplete="street-address" placeholder="Vejnavn og nr."></div>
+          <div class="field"><label for="email">Din e-mail</label><input id="email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="Din e-mailadresse"></div>
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="Telefon" type="tel" required maxlength="40" autocomplete="tel" placeholder="Dit telefonnummer"></div>
+          <div class="field"><label for="message">Besked (valgfrit)</label><textarea id="message" name="Besked" rows="3" maxlength="2000" placeholder="Er der noget, Filip skal vide om opgaven?"></textarea></div>
+          <button id="sendButton" class="btn" type="submit">Send forespørgsel</button>
+          <p class="note">Filip svarer på din e-mail. Oplysningerne sendes via FormSubmit til Filip for at aftale opgaven.</p>
+          <div id="formError" class="error" role="alert"></div>
+        </form>
+      </div>
+    </section>
+    <section id="contact" class="card contact" aria-labelledby="contactTitle">
+      <h2 id="contactTitle">Kontakt Filip</h2>
+      <p>Filips Service hjælper med hus og have i <strong>Gl. Kongsvang</strong>.</p>
+      <a href="mailto:filipvsimonsen@gmail.com">filipvsimonsen@gmail.com</a>
+    </section>
+    <noscript><p class="card">For at vælge service og sende en forespørgsel skal JavaScript være slået til. Du kan også skrive direkte til <a href="mailto:filipvsimonsen@gmail.com">filipvsimonsen@gmail.com</a>.</p></noscript>
+  </main>
+  <footer class="footer">Filips Service · Gl. Kongsvang · Lokal hjælp til hus og have</footer>
+  <script>
+    const $ = id => document.getElementById(id);
+    const services = { Snerydning: 40, Græsslåning: 50, Løvrydning: 40 };
+    let current = { service: '', base: 0 };
+
+    function localDate() {
+      const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Copenhagen', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+      const value = type => parts.find(part => part.type === type).value;
+      return value('year') + '-' + value('month') + '-' + value('day');
+    }
+
+    function selectedExtras() {
+      const extras = [];
+      if (current.service === 'Snerydning') {
+        document.querySelectorAll('#snowExtras .extra:checked').forEach(input => extras.push({ name: input.dataset.name, price: Number(input.dataset.price) }));
+        const driveway = document.querySelector('input[name="driveway"]:checked');
+        if (driveway && Number(driveway.value)) extras.push({ name: driveway.dataset.name, price: Number(driveway.value) });
+        const meters = Number($('extraMeters').value);
+        if (meters) extras.push({ name: 'Ekstra fortov +' + meters + ' meter', price: meters });
+      }
+      if (current.service === 'Løvrydning' && $('leafTransport').checked) {
+        extras.push({ name: 'Bortkørsel af løv', price: 10 });
+      }
+      return extras;
+    }
+
+    function calc() {
+      const extras = selectedExtras();
+      const total = current.base + extras.reduce((sum, extra) => sum + extra.price, 0);
+      $('total').textContent = total;
+      $('inquiryService').value = current.service;
+      $('inquiryExtras').value = extras.length ? extras.map(extra => extra.name + ' (+' + extra.price + ' kr.)').join(', ') : 'Ingen';
+      $('inquiryPrice').value = total + ' kr.';
+      $('inquirySubject').value = 'Forespørgsel om ' + current.service.toLowerCase() + ' · Filips Service';
+      return total;
+    }
+
+    function book(service) {
+      if (!Object.hasOwn(services, service)) return;
+      current = { service, base: services[service] };
+      document.querySelectorAll('.extra').forEach(input => { input.checked = false; });
+      document.querySelectorAll('input[name="driveway"]').forEach(input => { input.checked = input.value === '0'; });
+      $('leafTransport').checked = false;
+      $('extraMeters').value = '0';
+      $('snowExtras').hidden = service !== 'Snerydning';
+      $('leafExtras').hidden = service !== 'Løvrydning';
+      $('serviceTitle').textContent = 'Forespørgsel om ' + service.toLowerCase();
+      $('formError').style.display = 'none';
+      $('success').style.display = 'none';
+      $('date').min = localDate();
+      $('booking').classList.add('active');
+      calc();
+      $('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showFormError(message) {
+      $('formError').textContent = message;
+      $('formError').style.display = 'block';
+    }
+
+    function submitInquiry(event) {
+      event.preventDefault();
+      $('formError').style.display = 'none';
+      if (!current.service) {
+        event.preventDefault();
+        showFormError('Vælg først den service, du vil sende en forespørgsel om.');
+        return false;
+      }
+      $('date').min = localDate();
+      ['name', 'address', 'email', 'phone', 'message'].forEach(id => { $(id).value = $(id).value.trim(); });
+      if (!$('form').reportValidity()) {
+        event.preventDefault();
+        return false;
+      }
+      if (location.protocol === 'file:') {
+        event.preventDefault();
+        showFormError('Formularen skal åbnes via hjemmesidens webadresse for at kunne sende. Skriv gerne direkte til filipvsimonsen@gmail.com.');
+        return false;
+      }
+      if (navigator.onLine === false) {
+        event.preventDefault();
+        showFormError('Du er offline. Opret forbindelse til internettet, og send derefter din forespørgsel igen.');
+        return false;
+      }
+      const phone = $('phone').value;
+      if (!/^[+()\d\s.\-]{6,40}$/.test(phone) || phone.replace(/\D/g, '').length < 6) {
+        showFormError('Skriv et gyldigt telefonnummer.');
+        $('phone').focus();
+        return false;
+      }
+      if (document.querySelector('[name="_honey"]').value) {
+        showFormError('Forespørgslen kunne ikke sendes.');
+        return false;
+      }
+      calc();
+      $('sendButton').disabled = true;
+      $('sendButton').textContent = 'Sender forespørgsel…';
+      // FormSubmit sends the inquiry by email; this static page has no database.
+      HTMLFormElement.prototype.submit.call($('form'));
+      return false;
+    }
+
+    document.querySelectorAll('.extra, input[name="driveway"]').forEach(input => input.addEventListener('change', calc));
+    $('leafTransport').addEventListener('change', calc);
+    $('extraMeters').addEventListener('change', calc);
+    $('date').min = localDate();
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      const returnUrl = new URL(location.href);
+      returnUrl.search = '';
+      returnUrl.hash = '';
+      returnUrl.searchParams.set('forespoergsel', 'sendt');
+      $('inquiryNext').value = returnUrl.href;
+      $('inquiryNext').disabled = false;
+    }
+    if (new URLSearchParams(location.search).get('forespoergsel') === 'sendt') {
+      $('success').style.display = 'block';
+      $('success').focus();
+      history.replaceState(null, '', location.pathname + location.hash);
+    }
+    window.addEventListener('pageshow', () => {
+      $('sendButton').disabled = false;
+      $('sendButton').textContent = 'Send forespørgsel';
+    });
+  </script>
+</body>
+</html>
