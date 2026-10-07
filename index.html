@@ -15,8 +15,7 @@
     input[type="checkbox"],input[type="radio"]{width:18px;height:18px;margin:0;accent-color:var(--g);flex-shrink:0}
     .option label{display:flex;align-items:center;gap:10px;font-weight:600}
     .option b{white-space:nowrap}
-    .driveway{border:0;margin:18px 0 0;padding:0;min-width:0}
-    .driveway legend{font-weight:700;padding:0;margin-bottom:4px}
+    .driveway{border:0;margin:0;padding:0;min-width:0}
     textarea{width:100%;padding:12px;border:1px solid #cbd4cd;border-radius:10px;font:inherit;margin-top:6px;resize:vertical}
     .btn:disabled{opacity:.6;cursor:wait}
     .contact{margin-top:28px;text-align:center}
@@ -46,7 +45,7 @@
       <span class="area">Lokal hjælp i Gl. Kongsvang</span>
       <h1>Hjælp lige rundt om hjørnet.</h1>
       <p>Få hjælp til hus og have i Gl. Kongsvang. Enkelt og til faste priser.</p>
-      <p class="note">Send en forespørgsel – Filip kontakter dig for at aftale opgaven og tidspunktet.</p>
+      <p class="note">Send en forespørgsel – Filip kontakter dig for at bekræfte opgaven og tidspunktet.</p>
 
       </div>
       <div class="hero-logo-card">
@@ -78,15 +77,14 @@
       <div class="grid">
         <div>
           <h2 id="serviceTitle">Send forespørgsel</h2>
-          <p class="note">Vælg eventuelle tillæg. Du sender en forespørgsel, som Filip bekræfter efterfølgende.</p>
+          <p class="note">Vælg eventuelle tillæg.</p>
           <div id="snowExtras" hidden>
             <div class="option"><label><input id="snowSalt" type="checkbox" class="extra" data-name="Saltning" data-price="15"> Saltning</label><b>+15 kr.</b></div>
-            <fieldset class="driveway">
-              <legend>Indkørsel (valgfrit – vælg højst én)</legend>
+            <div class="option"><label><input id="cornerPlot" type="checkbox" class="extra" data-name="Hjørnegrund" data-price="30"> Hjørnegrund</label><b>+30 kr.</b></div>
+            <fieldset class="driveway" aria-label="Indkørsel">
               <div class="option"><label><input type="checkbox" name="driveway" value="20" data-name="Lille indkørsel"> Lille indkørsel</label><b>+20 kr.</b></div>
               <div class="option"><label><input type="checkbox" name="driveway" value="40" data-name="Stor indkørsel"> Stor indkørsel</label><b>+40 kr.</b></div>
             </fieldset>
-            <div class="option"><label><input id="cornerPlot" type="checkbox" class="extra" data-name="Hjørnegrund" data-price="30"> Hjørnegrund</label><b>+30 kr.</b></div>
           </div>
           <div id="grassExtras" hidden>
             <div class="option"><label><input id="grassCollection" type="checkbox" data-name="Opsamling af græs" data-price="10"> Opsamling af græs</label><b>+10 kr.</b></div>
@@ -95,7 +93,6 @@
             <div class="option"><label><input id="leafTransport" type="checkbox" data-name="Bortkørsel af løv" data-price="10"> Bortkørsel af løv</label><b>+10 kr.</b></div>
           </div>
           <p>Pris i alt</p><div class="total" aria-live="polite"><span id="total">0</span> kr.</div>
-          <p class="note">Filip bekræfter opgavens omfang og pris sammen med dig.</p>
         </div>
         <form id="form" action="https://formsubmit.co/filipvsimonsen@gmail.com" method="POST" accept-charset="UTF-8" onsubmit="return submitInquiry(event)">
           <input id="inquiryService" type="hidden" name="Service">
