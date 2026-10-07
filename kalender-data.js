@@ -49,7 +49,8 @@
     }
   }
   async function updateJob(id, status, date) {
-    if (!['new', 'accepted'].includes(status) || !/^20\d{2}-\d{2}-\d{2}$/.test(date)) throw new Error('Vælg en gyldig status og dato.');
+    if (!['new', 'accepted', 'rejected'].includes(status) || !/^20\d{2}-\d{2}-\d{2}$/.test(date)) throw new Error('Vælg en gyldig status og dato.');
+    if (!await isAdmin()) { const e = new Error('Log ind igen.'); e.code = 401; throw e; }
     const rows = checked(await sdk().from('filips_jobs').update({ status, scheduled_date: date }).eq('id', id).select('id'));
     if (!rows.length) throw new Error('Opgaven kunne ikke ændres. Kontrollér login.');
   }
