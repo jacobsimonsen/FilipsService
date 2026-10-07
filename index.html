@@ -10,6 +10,7 @@
 @media(max-width:760px){.services,.grid{grid-template-columns:1fr}.wrap{padding-top:24px}.hero{padding-top:8px}.hero h1{font-size:40px}}
 
     a{color:var(--g)}
+    .calendar-link{max-width:1050px;margin:0 auto;padding:22px 22px 0;text-align:right;font-size:14px}
     .area{display:inline-block;background:var(--lg);color:var(--g);border-radius:999px;padding:8px 14px;font-weight:700;margin-bottom:18px}
     input[type="checkbox"],input[type="radio"]{width:18px;height:18px;margin:0;accent-color:var(--g);flex-shrink:0}
     .option label{display:flex;align-items:center;gap:10px;font-weight:600}
@@ -38,6 +39,7 @@
   </style>
 </head>
 <body>
+  <nav class="calendar-link" aria-label="Navigation"><a href="./kalender.html">Filips kalender · Log ind</a></nav>
   <main id="public" class="wrap">
     <section class="hero" aria-label="Filips Service i Gl. Kongsvang">
       <div class="hero-copy">
@@ -58,12 +60,12 @@
     <section class="services" aria-label="Vælg en service">
       <div class="card">
         <div class="icon" aria-hidden="true">❄️</div><h2>Snerydning</h2>
-        <p>Fortov op til 15 meter.</p><div class="price">40 kr.</div>
+        <p>Fortov op til 15 meter og en indkørsel.</p><div class="price">Fra 60 kr.</div><p class="note">Grundpris 40 kr. + lille eller stor indkørsel.</p>
         <button class="btn" type="button" onclick="book('Snerydning')">Vælg snerydning</button>
       </div>
       <div class="card">
         <div class="icon" aria-hidden="true">🌱</div><h2>Græsslåning</h2>
-        <p>Standard græsplæne.</p><div class="price">50 kr.</div>
+        <p>Standard græsplæne. Opsamling af græs kan tilvælges.</p><div class="price">50 kr.</div>
         <button class="btn" type="button" onclick="book('Græsslåning')">Vælg græsslåning</button>
       </div>
       <div class="card">
@@ -78,19 +80,16 @@
           <h2 id="serviceTitle">Send forespørgsel</h2>
           <p class="note">Vælg eventuelle tillæg. Du sender en forespørgsel, som Filip bekræfter efterfølgende.</p>
           <div id="snowExtras" hidden>
-            <div class="option"><label><input type="checkbox" class="extra" data-name="Saltning" data-price="15"> Saltning</label><b>+15 kr.</b></div>
+            <div class="option"><label><input id="snowSalt" type="checkbox" class="extra" data-name="Saltning" data-price="15"> Saltning</label><b>+15 kr.</b></div>
             <fieldset class="driveway">
-              <legend>Indkørsel</legend>
-              <div class="option"><label><input type="radio" name="driveway" value="0" data-name="" checked> Ingen indkørsel</label><b>+0 kr.</b></div>
-              <div class="option"><label><input type="radio" name="driveway" value="20" data-name="Lille indkørsel"> Lille indkørsel</label><b>+20 kr.</b></div>
+              <legend>Indkørsel (vælg en)</legend>
+              <div class="option"><label><input type="radio" name="driveway" value="20" data-name="Lille indkørsel" checked> Lille indkørsel</label><b>+20 kr.</b></div>
               <div class="option"><label><input type="radio" name="driveway" value="40" data-name="Stor indkørsel"> Stor indkørsel</label><b>+40 kr.</b></div>
             </fieldset>
-            <div class="field"><label for="extraMeters">Ekstra fortov</label>
-              <select id="extraMeters">
-                <option value="0">Ingen</option><option value="10">+10 meter (+10 kr.)</option>
-                <option value="20">+20 meter (+20 kr.)</option><option value="30">+30 meter (+30 kr.)</option>
-              </select>
-            </div>
+            <div class="option"><label><input id="cornerPlot" type="checkbox" class="extra" data-name="Hjørnegrund" data-price="30"> Hjørnegrund</label><b>+30 kr.</b></div>
+          </div>
+          <div id="grassExtras" hidden>
+            <div class="option"><label><input id="grassCollection" type="checkbox" data-name="Opsamling af græs" data-price="10"> Opsamling af græs</label><b>+10 kr.</b></div>
           </div>
           <div id="leafExtras" hidden>
             <div class="option"><label><input id="leafTransport" type="checkbox" data-name="Bortkørsel af løv" data-price="10"> Bortkørsel af løv</label><b>+10 kr.</b></div>
@@ -115,7 +114,7 @@
           <div class="field"><label for="phone">Telefon</label><input id="phone" name="Telefon" type="tel" required maxlength="40" autocomplete="tel" placeholder="Dit telefonnummer"></div>
           <div class="field"><label for="message">Besked (valgfrit)</label><textarea id="message" name="Besked" rows="3" maxlength="2000" placeholder="Er der noget, Filip skal vide om opgaven?"></textarea></div>
           <button id="sendButton" class="btn" type="submit">Send forespørgsel</button>
-          <p class="note">Filip svarer på din e-mail. Oplysningerne sendes via FormSubmit til Filip for at aftale opgaven.</p>
+          <p class="note">Filip svarer på din e-mail. Oplysningerne gemmes i Filips private opgavekalender og sendes via FormSubmit til Filip for at aftale opgaven.</p>
           <div id="formError" class="error" role="alert"></div>
         </form>
       </div>
@@ -128,10 +127,14 @@
     <noscript><p class="card">For at vælge service og sende en forespørgsel skal JavaScript være slået til. Du kan også skrive direkte til <a href="mailto:filipvsimonsen@gmail.com">filipvsimonsen@gmail.com</a>.</p></noscript>
   </main>
   <footer class="footer">Filips Service · Gl. Kongsvang · Lokal hjælp til hus og have</footer>
+  <script src="./kalender-config.js"></script>
+  <script src="./supabase.js"></script>
+  <script src="./kalender-data.js"></script>
   <script>
     const $ = id => document.getElementById(id);
     const services = { Snerydning: 40, Græsslåning: 50, Løvrydning: 40 };
     let current = { service: '', base: 0 };
+    let attempt = null;
 
     function localDate() {
       const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Copenhagen', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
@@ -145,8 +148,9 @@
         document.querySelectorAll('#snowExtras .extra:checked').forEach(input => extras.push({ name: input.dataset.name, price: Number(input.dataset.price) }));
         const driveway = document.querySelector('input[name="driveway"]:checked');
         if (driveway && Number(driveway.value)) extras.push({ name: driveway.dataset.name, price: Number(driveway.value) });
-        const meters = Number($('extraMeters').value);
-        if (meters) extras.push({ name: 'Ekstra fortov +' + meters + ' meter', price: meters });
+      }
+      if (current.service === 'Græsslåning' && $('grassCollection').checked) {
+        extras.push({ name: 'Opsamling af græs', price: 10 });
       }
       if (current.service === 'Løvrydning' && $('leafTransport').checked) {
         extras.push({ name: 'Bortkørsel af løv', price: 10 });
@@ -169,11 +173,12 @@
       if (!Object.hasOwn(services, service)) return;
       current = { service, base: services[service] };
       document.querySelectorAll('.extra').forEach(input => { input.checked = false; });
-      document.querySelectorAll('input[name="driveway"]').forEach(input => { input.checked = input.value === '0'; });
+      document.querySelectorAll('input[name="driveway"]').forEach(input => { input.checked = input.value === '20'; });
       $('leafTransport').checked = false;
-      $('extraMeters').value = '0';
+      $('grassCollection').checked = false;
       $('snowExtras').hidden = service !== 'Snerydning';
       $('leafExtras').hidden = service !== 'Løvrydning';
+      $('grassExtras').hidden = service !== 'Græsslåning';
       $('serviceTitle').textContent = 'Forespørgsel om ' + service.toLowerCase();
       $('formError').style.display = 'none';
       $('success').style.display = 'none';
@@ -188,7 +193,7 @@
       $('formError').style.display = 'block';
     }
 
-    function submitInquiry(event) {
+    async function submitInquiry(event) {
       event.preventDefault();
       $('formError').style.display = 'none';
       if (!current.service) {
@@ -222,17 +227,50 @@
         showFormError('Forespørgslen kunne ikke sendes.');
         return false;
       }
+      const chosenDriveway = document.querySelector('input[name="driveway"]:checked');
+      if (current.service === 'Snerydning' && (!chosenDriveway || ![20, 40].includes(Number(chosenDriveway.value)))) {
+        showFormError('Vælg lille eller stor indkørsel.');
+        return false;
+      }
+      if ($('sendButton').disabled) return false;
+      if (!window.FilipCloud || !FilipCloud.ready()) {
+        showFormError('Formularen er endnu ikke tilsluttet kalenderen. Skriv direkte til filipvsimonsen@gmail.com.');
+        return false;
+      }
       calc();
+      const driveway = document.querySelector('input[name="driveway"]:checked');
+      const payload = {
+        date: $('date').value, service: current.service,
+        name: $('name').value, address: $('address').value, email: $('email').value,
+        phone: $('phone').value, message: $('message').value, honey: '',
+        options: {
+          salt: $('snowSalt').checked, corner: $('cornerPlot').checked,
+          driveway: driveway ? Number(driveway.value) : 0,
+          grass: $('grassCollection').checked, leaves: $('leafTransport').checked,
+        },
+      };
+      // Reuse the request ID after a lost reply; editing the form creates a new request.
+      const signature = JSON.stringify(payload);
+      if (!attempt || attempt.signature !== signature) attempt = { id: crypto.randomUUID(), signature };
+      payload.id = attempt.id;
       $('sendButton').disabled = true;
       $('sendButton').textContent = 'Sender forespørgsel…';
-      // FormSubmit sends the inquiry by email; this static page has no database.
-      HTMLFormElement.prototype.submit.call($('form'));
+      try {
+        await FilipCloud.submitInquiry(payload);
+        // The inquiry is stored before the browser continues to the email service.
+        HTMLFormElement.prototype.submit.call($('form'));
+      } catch (error) {
+        const validation = error.code === 'P0001' ? error.message : '';
+        showFormError(validation || 'Forespørgslen kunne ikke gemmes i kalenderen. Prøv igen, eller skriv direkte til filipvsimonsen@gmail.com.');
+        $('sendButton').disabled = false;
+        $('sendButton').textContent = 'Send forespørgsel';
+      }
       return false;
     }
 
     document.querySelectorAll('.extra, input[name="driveway"]').forEach(input => input.addEventListener('change', calc));
     $('leafTransport').addEventListener('change', calc);
-    $('extraMeters').addEventListener('change', calc);
+    $('grassCollection').addEventListener('change', calc);
     $('date').min = localDate();
     if (location.protocol === 'http:' || location.protocol === 'https:') {
       const returnUrl = new URL(location.href);

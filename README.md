@@ -1,49 +1,43 @@
-# Filips Service – enkel GitHub Pages-version
+# Filips Service – hjemmeside og fælles kalender
 
-En almindelig HTML-hjemmeside med servicevalg, prisberegning og e-mailformular. Ingen installation, database, Cloudflare, Google-hosting eller privat kalender.
+Hjemmesiden bliver på GitHub Pages. `kalender.html` er den separate side, som Filip kan åbne og logge ind på med en adgangskode.
 
-## Sådan udgiver du
+**En HTML-fil gemmer ikke aftaler på tværs af enheder.** Derfor forbindes formularen og kalenderen til ét Supabase-projekt. Google og Cloudflare bruges ikke til denne løsning. E-mail sendes fortsat via FormSubmit til filipvsimonsen@gmail.com.
 
-1. Pak `filips_service_github_pages.zip` ud.
-2. Opret et **offentligt repository** på GitHub med navnet `filips-service`. Det giver adgang til Pages med GitHub Free. Hvis du i stedet opretter `<dit-brugernavn>.github.io`, får du en adresse uden `/filips-service/` til sidst.
-3. Upload indholdet af den udpakkede mappe til repositoryets øverste niveau. Her skal `index.html`, `logo.png`, `.nojekyll` og denne README ligge. Upload indholdet, ikke blot ZIP-filen eller den ydre mappe.
-4. Vælg repositoryets **Settings → Pages**. Under **Build and deployment** vælger du **Source: Deploy from a branch**, **Branch: main**, **Folder: /(root)** og trykker **Save**. Vælg den faktiske hovedgren, hvis den hedder noget andet end `main`.
-5. Vent på udgivelsen, og brug adressen, som GitHub viser under Pages. Den vil normalt være `https://DIT-BRUGERNAVN.github.io/filips-service/`. Det er et eksempel, ikke en allerede oprettet adresse.
+## Opsæt én gang – før upload
 
-Der er ingen build-kommando, API-nøgle eller betalt hostingtjeneste at sætte op. `.nojekyll` fortæller GitHub, at hjemmesidens filer er klar til at blive vist direkte.
+1. Opret et projekt på https://supabase.com/dashboard. Vælg en region i EU.
+2. Opret en bruger under Authentication → Users → Add user → Create new user, med e-mail **filipvsimonsen@gmail.com** og en adgangskode på mindst 12 tegn. Markér e-mailen som bekræftet. Brug ikke en invitation. Slå nye brugerregistreringer fra i projektets indstillinger for Authentication. Filip skal ikke have en ChatGPT- eller Google-konto.
+3. Åbn SQL Editor, indsæt hele `database.sql`, og kør den. Den opretter opgaverne og giver kun den oprettede Filip-bruger adgang til at læse og acceptere dem. `filips_private` må ikke tilføjes til API'ens exposed schemas; standarden med `public` er tilstrækkelig.
+4. Find projektets URL og **publishable key**, som starter med `sb_publishable_`, under projektets Connect/API-indstillinger. Indsæt dem i `kalender-config.js`, eller brug den medfølgende separate opsætningsvejledning til at downloade filen. Brug aldrig en secret key, service_role-nøgle eller en adgangskode i filen.
+5. Upload pakkens filer i roden af https://github.com/jacobsimonsen/FilipsService. Erstat `index.html` og eventuelle eksisterende filer med samme navn. Upload filerne fra den udpakkede mappe; upload ikke selve ZIP-filen eller mappen som en undermappe.
 
-[GitHub: Opret en Pages-side](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) · [GitHub: Indstil udgivelse fra en gren](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+GitHub Pages skal fortsat udgive fra `main` og `/(root)`, som den nuværende side.
 
-## Aktivér e-mailformularen
+## Åbn og afprøv
 
-Formularen sender forespørgsler via FormSubmit til **filipvsimonsen@gmail.com**. Den kræver ikke, at kunden selv åbner et mailprogram.
+Ved opdatering fra en tidligere kalenderpakke: kør den opdaterede database.sql i Supabase SQL Editor, og upload den nye index.html. Eksisterende opgaver og deres pris bevares. Behold din allerede udfyldte kalender-config.js med projektets URL og offentlige nøgle.
 
-Efter udgivelsen: send en testforespørgsel med dine egne oplysninger. FormSubmit kan sende en aktiveringsmail til Filip ved første brug af den nye webadresse. Åbn den, bekræft formularen, og kontrollér også spam. Send derefter en ny testforespørgsel og kontrollér, at den bliver modtaget.
+- Hjemmeside: https://jacobsimonsen.github.io/FilipsService/
+- Kalender: https://jacobsimonsen.github.io/FilipsService/kalender.html
+- Send én testforespørgsel fra hjemmesiden. Kontrollér den både i kalenderen og i Filips e-mail. FormSubmit kan sende en aktiveringsmail, som Filip skal godkende. Før aktivering er e-mailleveringen ikke klar.
+- Log ind i kalenderen fra en anden enhed, og kontrollér at den samme opgave vises. Accepter den og vælg den aftalte dato.
+- Log ud og kontrollér, at kundernes oplysninger er skjult. Den offentlige side indeholder ikke kundeoplysninger, og databasen afviser læsning uden Filips login.
 
-En afsendelse bliver først bekræftet på siden, når FormSubmit sender kunden tilbage. Siden gemmer ingen opgaver eller kontaktoplysninger i en kalender eller database. Filip behandler forespørgsler i sin indbakke og bekræfter aftalen over for kunden.
+## Brug
 
-FormSubmit behandler formularens oplysninger. Google reCAPTCHA er slået fra. Der er en skjult spamfælde, men denne statiske version har ingen egen server til at begrænse afsendelser. [FormSubmit: Formular og aktivering](https://formsubmit.co/)
+Græsslåning koster 50 kr. med opsamling af græs som tillæg til 10 kr. Ved snerydning skal der vælges lille indkørsel til 20 kr. eller stor indkørsel til 40 kr. oven i grundprisen på 40 kr. Hjørnegrund kan tilvælges til 30 kr.; saltning koster fortsat 15 kr. Løvrydning og bortkørsel af løv er uændret.
 
-## Funktioner
+Nye forespørgsler får status **Ny**. De er først aftalt, når Filip har talt eller skrevet med kunden og markeret dem som **Accepteret**. Statusændringer sender ikke en e-mail til kunden. Den oprindeligt ønskede dato bevares, når Filip ændrer den aftalte dato. Listen **Alle opgaver** indeholder også tidligere måneder. Kalenderen opdateres hvert minut, når den er åben, og med knappen **Opdater**. Filip kan skifte adgangskode fra kalenderen. En glemt adgangskode kan ændres via Supabase-projektets brugeradministration.
 
-- Det store logo har en fremtrædende plads i introduktionen.
-- Gl. Kongsvang står i introduktion, formular og kontaktoplysninger.
-- Snerydning 40 kr.; saltning +15 kr.; lille indkørsel +20 kr. eller stor indkørsel +40 kr.; ekstra fortov +10/20/30 meter til +10/20/30 kr. Hjørnegrund er fjernet.
-- Græsslåning 50 kr.; løvrydning 40 kr.; bortkørsel af løv som tillæg +10 kr.
-- Telefon, navn, adresse, e-mail og ønsket dato er obligatoriske.
-- Knappen hedder **Send forespørgsel**. Filip bekræfter opgaven og prisen efterfølgende.
-- Ingen privat kalender eller login. Kundedata og adgangskoder skal ikke lægges i repositoryet.
+De nye forespørgsler gemmes i den fælles database, før e-mailtjenesten åbnes. Hvis forbindelsen til databasen mangler, sendes formularen ikke; kunden får i stedet mulighed for at skrive direkte til Filip. Hvis e-mailtjenesten fejler efter gemning, findes opgaven stadig i kalenderen. Gamle e-mails og forespørgsler fra den tidligere hjemmeside bliver ikke automatisk importeret.
 
-## Senere ændringer og eget domæne
+## Drift
 
-Tekst, udseende og priser findes i `index.html`; logoet ligger i `logo.png`. Upload ændringer til den valgte gren, så opdateres siden igen. Logoets relative sti virker både på en GitHub-projektadresse og på et eget domæne.
+Supabase har en gratisplan. Gratis projekter kan blive sat på pause efter en uge uden aktivitet; så virker login og formularens gemning ikke, før projektet genoptages i Supabase. Tjek de gældende vilkår på https://supabase.com/pricing. Projektet og databasen tilhører den konto, der opretter dem. Eksportér jævnligt opgaver fra Supabase, og slet kundedata, når de ikke længere skal bruges.
 
-Et registreret domæne kan tilsluttes under **Settings → Pages → Custom domain**. Følg GitHubs vejledning til domænets DNS-indstillinger; et domænekøb er ikke inkluderet. Send en ny testforespørgsel efter adresseskift, da FormSubmit kan kræve ny aktivering. [GitHub: Eget domæne](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+Der er enkel spambegrænsning på formularen. Telefon er obligatorisk. Priser og tillæg beregnes også i databasen, så en kunde ikke kan ændre dem ved at manipulere siden. Ingen adgangskoder eller private nøgler indgår i pakken.
 
-## GitHubs begrænsninger
+Pakken er afprøvet lokalt med en PostgreSQL-database og tests af formular og kalender. Den er ikke forbundet til et rigtigt Supabase-projekt eller udgivet på GitHub endnu. Den afsluttende test ovenfor kræver den færdige opsætning.
 
-GitHub Pages begrænser brug som gratis hosting af onlinevirksomheder, webshops og sider, der primært faciliterer kommercielle transaktioner. Den tekniske pakke ændrer ikke disse vilkår. Brug et almindeligt webhotel til den kommercielle drift, hvis siden falder under begrænsningen; de samme statiske filer kan også uploades dér. [GitHubs gældende begrænsninger](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)
-
-## Kontrol
-
-Sidekode og formularlogik er kontrolleret lokalt, herunder priser, tillæg, telefonvalidering, relative filstier og returadresse under en GitHub-projektsti. Testene sender ingen rigtige e-mails. Der er ikke oprettet et repository eller gennemført en udgivelse på din konto. Den faktiske e-maillevering skal prøves efter udgivelsen.
+Supabase JavaScript-klienten er version 2.117.3, leveret som lokal `supabase.js`; se `LICENSE_supabase.txt`.
