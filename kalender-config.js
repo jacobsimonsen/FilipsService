@@ -1,7 +1,6 @@
-// Kun disse offentlige projektoplysninger skal udfyldes.
-// Brug en sb_publishable_...-nøgle. Ingen secret/service_role-nøgler eller adgangskoder.
+// Kun offentlige projektoplysninger. Ingen adgangskoder eller private nøgler.
 window.FILIPS_KALENDER = {
-  url: '',
-  publishableKey: '',
-  email: 'filipvsimonsen@gmail.com'
+  "url": "https://janzwjerkgebrgaamggy.supabase.co",
+  "publishableKey": "sb_publishable_dLlFYWqh0MEPJ8nviFdXdg_GBuzqjiA",
+  "email": "filipvsimonsen@gmail.com"
 };

@@ -60,7 +60,7 @@
     <section class="services" aria-label="Vælg en service">
       <div class="card">
         <div class="icon" aria-hidden="true">❄️</div><h2>Snerydning</h2>
-        <p>Fortov op til 15 meter og en indkørsel.</p><div class="price">Fra 60 kr.</div><p class="note">Grundpris 40 kr. + lille eller stor indkørsel.</p>
+        <p>Fortov op til 15 meter. Indkørsel kan tilvælges.</p><div class="price">40 kr.</div>
         <button class="btn" type="button" onclick="book('Snerydning')">Vælg snerydning</button>
       </div>
       <div class="card">
@@ -82,9 +82,9 @@
           <div id="snowExtras" hidden>
             <div class="option"><label><input id="snowSalt" type="checkbox" class="extra" data-name="Saltning" data-price="15"> Saltning</label><b>+15 kr.</b></div>
             <fieldset class="driveway">
-              <legend>Indkørsel (vælg en)</legend>
-              <div class="option"><label><input type="radio" name="driveway" value="20" data-name="Lille indkørsel" checked> Lille indkørsel</label><b>+20 kr.</b></div>
-              <div class="option"><label><input type="radio" name="driveway" value="40" data-name="Stor indkørsel"> Stor indkørsel</label><b>+40 kr.</b></div>
+              <legend>Indkørsel (valgfrit – vælg højst én)</legend>
+              <div class="option"><label><input type="checkbox" name="driveway" value="20" data-name="Lille indkørsel"> Lille indkørsel</label><b>+20 kr.</b></div>
+              <div class="option"><label><input type="checkbox" name="driveway" value="40" data-name="Stor indkørsel"> Stor indkørsel</label><b>+40 kr.</b></div>
             </fieldset>
             <div class="option"><label><input id="cornerPlot" type="checkbox" class="extra" data-name="Hjørnegrund" data-price="30"> Hjørnegrund</label><b>+30 kr.</b></div>
           </div>
@@ -173,7 +173,7 @@
       if (!Object.hasOwn(services, service)) return;
       current = { service, base: services[service] };
       document.querySelectorAll('.extra').forEach(input => { input.checked = false; });
-      document.querySelectorAll('input[name="driveway"]').forEach(input => { input.checked = input.value === '20'; });
+      document.querySelectorAll('input[name="driveway"]').forEach(input => { input.checked = false; });
       $('leafTransport').checked = false;
       $('grassCollection').checked = false;
       $('snowExtras').hidden = service !== 'Snerydning';
@@ -227,11 +227,6 @@
         showFormError('Forespørgslen kunne ikke sendes.');
         return false;
       }
-      const chosenDriveway = document.querySelector('input[name="driveway"]:checked');
-      if (current.service === 'Snerydning' && (!chosenDriveway || ![20, 40].includes(Number(chosenDriveway.value)))) {
-        showFormError('Vælg lille eller stor indkørsel.');
-        return false;
-      }
       if ($('sendButton').disabled) return false;
       if (!window.FilipCloud || !FilipCloud.ready()) {
         showFormError('Formularen er endnu ikke tilsluttet kalenderen. Skriv direkte til filipvsimonsen@gmail.com.');
@@ -268,7 +263,12 @@
       return false;
     }
 
-    document.querySelectorAll('.extra, input[name="driveway"]').forEach(input => input.addEventListener('change', calc));
+    document.querySelectorAll('.extra, input[name="driveway"]').forEach(input => input.addEventListener('change', () => {
+      if (input.name === 'driveway' && input.checked) {
+        document.querySelectorAll('input[name="driveway"]').forEach(other => { if (other !== input) other.checked = false; });
+      }
+      calc();
+    }));
     $('leafTransport').addEventListener('change', calc);
     $('grassCollection').addEventListener('change', calc);
     $('date').min = localDate();
